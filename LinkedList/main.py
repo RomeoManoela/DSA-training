@@ -53,24 +53,101 @@ class LinkedList:
         self.length -= 1
         return tail
 
+    def prepend(self, data: str | int) -> None:
+        node: Node = Node(data)
+        if self.length == 0:
+            self.head = node
+            self.tail = node
+        else:
+            node.next = self.head
+            self.head = node
+        self.length += 1
+
+    def pop_first(self) -> Node | None:
+        if self.length == 0:
+            return None
+        head: Node = self.head
+        self.head = head.next
+        head.next = None
+        self.length -= 1
+        return head
+
+    def get(self, index: int) -> Node | None:
+        if index not in range(self.length):
+            raise IndexError("out of range")
+        current: Node = self.head
+        for _ in range(index):
+            current = current.next
+        return current
+
+    def set(self, index: int, data: int | str) -> None:
+        self.get(index).data = data
+
+    def insert(self, index: int, data: int | str) -> None:
+        if index <= 0:
+            return self.prepend(data)
+        if index >= self.length - 1:
+            return self.append(data)
+        previous: Node = self.get(index - 1)
+        node: Node = Node(data)
+        node.next = previous.next
+        previous.next = node
+        self.length += 1
+
+    def remove(self, index: int) -> Node | None:
+        if index not in range(self.length):
+            raise ValueError(f"List has no element at index {index} ")
+        if index == self.length - 1:
+            return self.pop()
+        if index == 0:
+            return self.pop_first()
+        previous: Node = self.get(index - 1)
+        node: Node = previous.next
+        previous.next = node.next
+        node.next = None
+        self.length -= 1
+        return node
+
+    def reverse(self) -> None:
+        current: Node = self.head
+        before: Node | None = None
+        while current:
+            after: Node | None = current.next
+            current.next = before
+            before = current
+            current = after
+        self.head, self.tail = self.tail, self.head
+
 
 def main() -> None:
-    ll: LinkedList = LinkedList(2)
-    print(ll, len(ll))
+    ll: LinkedList = LinkedList(0)
     ll.append(1)
-    print(ll, len(ll))
     ll.append(2)
-    print(ll, len(ll))
-    ll.clear()
-    ll.append(9)
-    print(ll, len(ll))
-    ll.append(12)
-    print(ll, len(ll))
     ll.append(3)
+    ll.append(4)
+    ll.append(51)
     print(ll, len(ll))
-    print(ll.pop())
+    ll.set(0, 111)
     print(ll, len(ll))
-    print(ll.pop())
+    ll.set(3, 11111111111)
+    print(ll, len(ll))
+    ll.insert(3, 222)
+    print(ll, len(ll))
+    ll.insert(0, 333)
+    print(ll, len(ll))
+    ll.insert(35555, 444)
+    print(ll, len(ll))
+    ll.insert(4, 555)
+    print(ll, len(ll))
+    ll.insert(-4, 666)
+    print(ll, len(ll))
+    print(ll.remove(4))
+    print(ll, len(ll))
+    print(ll.remove(6))
+    print(ll, len(ll))
+    print(ll.remove(0))
+    print(ll, len(ll))
+    ll.reverse()
     print(ll, len(ll))
 
 
