@@ -126,6 +126,7 @@ def main() -> None:
     ll.append(3)
     ll.append(4)
     ll.append(51)
+    ll.prepend(100)
     print(ll, len(ll))
     ll.set(0, 111)
     print(ll, len(ll))
