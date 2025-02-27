@@ -15,7 +15,7 @@ class LinkedList:
         self.length: int = 1
 
     def __iter__(self):
-        current: Node = self.head
+        current: Node | None = self.head
         while current:
             yield current
             current = current.next
