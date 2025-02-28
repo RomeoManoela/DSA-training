@@ -85,7 +85,6 @@ class DoublyLinkedList:
         node.data = data
 
 
-
 def main() -> None:
     dll: DoublyLinkedList = DoublyLinkedList(1)
     dll.append(2)

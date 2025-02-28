@@ -44,6 +44,12 @@ class LinkedList:
     def pop(self) -> Node | None:
         if self.length == 0:
             return None
+        if self.length == 1:
+            head: Node = self.head
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return head
         tail: Node = self.tail
         previous: Node = self.head
         while previous.next.next:
@@ -125,6 +131,9 @@ def main() -> None:
     ll.append(2)
     ll.append(3)
     ll.append(4)
+    print(ll, len(ll))
+    print(ll.pop())
+    print(ll, len(ll))
     ll.append(51)
     ll.prepend(100)
     print(ll, len(ll))
