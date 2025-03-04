@@ -74,30 +74,3 @@ class MyLinkedList(LinkedList):
         a: Node = self.get(first)
         b: Node = self.get(second)
         a.data, b.data = b.data, a.data
-
-
-def main():
-    ll = MyLinkedList(1)
-    ll.append(2)
-    ll.append(2)
-    ll.append(2)
-    ll.append(3)
-    ll.append(3)
-    ll.append(3)
-    ll.append(4)
-    ll.append(5)
-    ll.append(6)
-    ll.append(6)
-    ll.append(6)
-    print(ll)
-    print(ll.find_middle_node())
-    print(ll.has_loop())
-    ll.remove_duplicate()
-    print(ll, ll.length)
-    print(ll.fin_kth(3))
-    ll.reverse_between(0, 2)
-    print(ll)
-
-
-if __name__ == "__main__":
-    main()

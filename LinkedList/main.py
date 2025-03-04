@@ -1,3 +1,6 @@
+from typing import Generator, Any
+
+
 class Node:
     def __init__(self, data: str | int) -> None:
         self.data: str | int = data
@@ -14,7 +17,7 @@ class LinkedList:
         self.tail: Node = node
         self.length: int = 1
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[Node | None, Any, None]:
         current: Node | None = self.head
         while current:
             yield current
@@ -123,43 +126,3 @@ class LinkedList:
             before = current
             current = after
         self.head, self.tail = self.tail, self.head
-
-
-def main() -> None:
-    ll: LinkedList = LinkedList(0)
-    ll.append(1)
-    ll.append(2)
-    ll.append(3)
-    ll.append(4)
-    print(ll, len(ll))
-    print(ll.pop())
-    print(ll, len(ll))
-    ll.append(51)
-    ll.prepend(100)
-    print(ll, len(ll))
-    ll.set(0, 111)
-    print(ll, len(ll))
-    ll.set(3, 11111111111)
-    print(ll, len(ll))
-    ll.insert(3, 222)
-    print(ll, len(ll))
-    ll.insert(0, 333)
-    print(ll, len(ll))
-    ll.insert(35555, 444)
-    print(ll, len(ll))
-    ll.insert(4, 555)
-    print(ll, len(ll))
-    ll.insert(-4, 666)
-    print(ll, len(ll))
-    print(ll.remove(4))
-    print(ll, len(ll))
-    print(ll.remove(6))
-    print(ll, len(ll))
-    print(ll.remove(0))
-    print(ll, len(ll))
-    ll.reverse()
-    print(ll, len(ll))
-
-
-if __name__ == "__main__":
-    main()

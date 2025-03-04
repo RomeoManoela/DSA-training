@@ -104,8 +104,9 @@ class DoublyLinkedList:
 
     def insert(self, index: int, data: int | str) -> None:
         if self.length == 0:
-            self.head = Node(data)
-            self.tail = Node(data)
+            new_node: Node = Node(data)
+            self.head = new_node
+            self.tail = new_node
         if index <= 0:
             return self.prepend(data)
         if index >= self.length:
@@ -130,49 +131,7 @@ class DoublyLinkedList:
         previous: Node = self.get(index - 1)
         node: Node = previous.next
         previous.next = node.next
-        previous.next.prev = previous
+        if previous.next:
+            previous.next.prev = previous
         self.length -= 1
         return node
-
-
-def main() -> None:
-    dll: DoublyLinkedList = DoublyLinkedList(1)
-    dll.append(2)
-    dll.append(3)
-    print(dll.pop_first())
-    print(dll, len(dll))
-    dll.append(4)
-    print(dll, len(dll))
-    print(dll.pop())
-    print(dll, len(dll))
-    print(dll.pop())
-    print(dll, len(dll))
-    dll.append(5)
-    print(dll, len(dll))
-    dll.prepend(6)
-    print(dll, len(dll))
-    dll.prepend(7)
-    print(dll, len(dll))
-    print(dll.get(0))
-    print(dll.get(3))
-    print(dll.get(1))
-    print(dll.pop_first())
-    print(dll, len(dll))
-    dll.set(0, 1)
-    dll.set(2, 188)
-    print(dll, len(dll))
-
-    dll.insert(2, 8)
-    print(dll, len(dll))
-
-    dll.insert(1, 2228)
-    print(dll, len(dll))
-
-    dll.insert(0, 11118)
-    print(dll, len(dll))
-    dll.insert(5, 11199918)
-    print(dll, len(dll))
-
-
-if __name__ == "__main__":
-    main()
