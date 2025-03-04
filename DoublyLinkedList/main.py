@@ -49,11 +49,16 @@ class DoublyLinkedList:
     def pop(self) -> Node | None:
         if self.length == 0:
             return None
-        tail: Node = self.tail
-        self.tail = tail.prev
-        self.tail.next = None
+        tmp: Node | None = self.tail
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = tmp.prev
+            self.tail.next = None
+            tmp.prev = None
         self.length -= 1
-        return tail
+        return tmp
 
     def prepend(self, data: int | str) -> None:
         node: Node = Node(data)
@@ -70,8 +75,13 @@ class DoublyLinkedList:
         if self.length == 0:
             return None
         head: Node = self.head
-        self.head = self.head.next
-        self.head.prev = None
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            head.next = None
         self.length -= 1
         return head
 
@@ -79,13 +89,50 @@ class DoublyLinkedList:
         if index not in range(self.length):
             raise IndexError("Index out of range")
         node: Node | None = self.head
-        for _ in range(index):
-            node = node.next
+        if index <= self.length // 2:
+            for _ in range(index):
+                node = node.next
+        else:
+            node = self.tail
+            for _ in range(self.length - index - 1):
+                node = node.prev
         return node
 
     def set(self, index: int, data: int | str) -> None:
         node: Node = self.get(index)
         node.data = data
+
+    def insert(self, index: int, data: int | str) -> None:
+        if self.length == 0:
+            self.head = Node(data)
+            self.tail = Node(data)
+        if index <= 0:
+            return self.prepend(data)
+        if index >= self.length:
+            return self.append(data)
+        else:
+            next: Node = self.get(index)
+            prev: Node | None = next.prev
+            node: Node = Node(data)
+            prev.next = node
+            node.prev = prev
+            node.next = next
+            next.prev = node
+        self.length += 1
+
+    def remove(self, index: int) -> Node | None:
+        if index not in range(self.length):
+            raise ValueError(f"List has no element at index {index} ")
+        if index == self.length - 1:
+            return self.pop()
+        if index == 0:
+            return self.pop_first()
+        previous: Node = self.get(index - 1)
+        node: Node = previous.next
+        previous.next = node.next
+        previous.next.prev = previous
+        self.length -= 1
+        return node
 
 
 def main() -> None:
@@ -113,6 +160,17 @@ def main() -> None:
     print(dll, len(dll))
     dll.set(0, 1)
     dll.set(2, 188)
+    print(dll, len(dll))
+
+    dll.insert(2, 8)
+    print(dll, len(dll))
+
+    dll.insert(1, 2228)
+    print(dll, len(dll))
+
+    dll.insert(0, 11118)
+    print(dll, len(dll))
+    dll.insert(5, 11199918)
     print(dll, len(dll))
 
 

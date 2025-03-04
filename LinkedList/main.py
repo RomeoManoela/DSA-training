@@ -45,16 +45,17 @@ class LinkedList:
         if self.length == 0:
             return None
         current: Node = self.head
-        previous: Node = self.head
-        while previous.next:
-            previous = current
-            current = current.next
-        self.tail = previous
-        previous.next = None
-        self.length -= 1
-        if self.length == 0:
+        if self.length == 1:
             self.head = None
             self.tail = None
+        else:
+            previous: Node = self.head
+            while previous.next:
+                previous = current
+                current = current.next
+            self.tail = previous
+            previous.next = None
+        self.length -= 1
         return current
 
     def prepend(self, data: str | int) -> None:
@@ -92,7 +93,7 @@ class LinkedList:
     def insert(self, index: int, data: int | str) -> None:
         if index <= 0:
             return self.prepend(data)
-        if index >= self.length - 1:
+        if index >= self.length:
             return self.append(data)
         previous: Node = self.get(index - 1)
         node: Node = Node(data)
@@ -110,7 +111,6 @@ class LinkedList:
         previous: Node = self.get(index - 1)
         node: Node = previous.next
         previous.next = node.next
-        node.next = None
         self.length -= 1
         return node
 
