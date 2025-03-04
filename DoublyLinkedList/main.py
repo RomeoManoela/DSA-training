@@ -1,3 +1,6 @@
+from typing import Any, Generator
+
+
 class Node:
     def __init__(self, data: int | str) -> None:
         self.data = data
@@ -15,7 +18,7 @@ class DoublyLinkedList:
         self.tail: Node | None = node
         self.length: int = 1
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> Generator[Node | None, Any, None]:
         current: Node | None = self.head
         while current:
             yield current

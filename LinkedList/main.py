@@ -44,20 +44,18 @@ class LinkedList:
     def pop(self) -> Node | None:
         if self.length == 0:
             return None
-        if self.length == 1:
-            head: Node = self.head
-            self.head = None
-            self.tail = None
-            self.length = 0
-            return head
-        tail: Node = self.tail
+        current: Node = self.head
         previous: Node = self.head
-        while previous.next.next:
-            previous = previous.next
+        while previous.next:
+            previous = current
+            current = current.next
         self.tail = previous
         previous.next = None
         self.length -= 1
-        return tail
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return current
 
     def prepend(self, data: str | int) -> None:
         node: Node = Node(data)
@@ -76,6 +74,8 @@ class LinkedList:
         self.head = head.next
         head.next = None
         self.length -= 1
+        if self.length == 0:
+            self.tail = None
         return head
 
     def get(self, index: int) -> Node | None:
