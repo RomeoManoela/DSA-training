@@ -37,20 +37,6 @@ class HasTable:
         return all_keys
 
 
-# leetcode question
-def item_in_common(list1: list, list2: list) -> bool:
-    """le meilleur solution est de faire un hash table"""
-    ht: HasTable = (
-        HasTable()
-    )  # On peut utiliser un dictionaire, c'est le hastable natif
-    for i in list1:
-        ht.set(str(i), True)  # O(1)
-    for j in list2:
-        if ht.get(str(j)):  # O(1)
-            return True
-    return False
-
-
 def main():
     ht: HasTable = HasTable()
     ht.set("hello", 10)
