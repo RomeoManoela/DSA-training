@@ -39,17 +39,3 @@ def first_non_repeating_char(string: str) -> str | None:
         if my_dic[char] == 1:
             return char
     return None
-
-
-def main():
-    print(item_in_common([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]))
-    print(item_in_common([1, 2, 3, 4, 5], [5, 6, 7, 8, 9, 10]))
-    print(find_duplicate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5]))
-    print(first_non_repeating_char("aabbccddeef"))
-    print(first_non_repeating_char("hello"))
-    print(first_non_repeating_char("leetcode"))
-    print(first_non_repeating_char("romero"))
-
-
-if __name__ == "__main__":
-    main()
