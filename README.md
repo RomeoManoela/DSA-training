@@ -5,12 +5,12 @@ Each folder represents a specific topic I worked on.
 
 ## Structure
 - `BST` - Binary Search Trees
-- `DoublyLinkedList` - Doubly Linked List exercises
+- `DoublyLinkedList` - Doubly Linked List
 - `Graph` - Graph algorithms
-- `HashTable` - Hash table implementations
-- `LinkedList` - Single Linked List problems
-- `Recursion` - Recursion exercises
-- `Stack && Queue` - Stack and Queue problems
+- `HashTable` - Hash table
+- `LinkedList` - Single Linked List
+- `Recursion` - Recursion
+- `Stack && Queue` - Stack and Queue
 
 ## Purpose
 The goal is to strengthen my understanding of DSA through daily problem-solving.
