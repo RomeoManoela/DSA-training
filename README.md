@@ -1,9 +1,9 @@
-# DSA_book_training
+## DSA_book_training
 
 This repository contains my daily practice and learning progress in Data Structures and Algorithms (DSA).  
 Each folder represents a specific topic I worked on.
 
-## Structure
+### Structure
 - `BST` - Binary Search Trees
 - `DoublyLinkedList` - Doubly Linked List
 - `Graph` - Graph algorithms
@@ -12,10 +12,10 @@ Each folder represents a specific topic I worked on.
 - `Recursion` - Recursion
 - `Stack && Queue` - Stack and Queue
 
-## Purpose
+### Purpose
 The goal is to strengthen my understanding of DSA through daily problem-solving.
 
-## Language
+### Language
 - Python 100%
 
 Feel free to explore and learn along!
