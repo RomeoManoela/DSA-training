@@ -1,5 +1,4 @@
 import merge1
-# sort a list
 def merge_sort(arr: list) -> list:
     if len(arr) == 1:
         return arr
