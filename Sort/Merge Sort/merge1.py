@@ -1,23 +1,26 @@
-# combine two sorted lists
-def sort(arr1: list, arr2: list) -> list:
-    result: list = []
-    i: int = 0
-    j: int = 0
-    while i < len(arr1) and j < len(arr2):
-        if arr2[j] < arr1[i]:
-            result.append(arr2[j])
+def merge(list1: list[int], list2: list[int]) -> list[int]:
+    i = j = 0
+    res: list[int] = []
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            res.append(list1[i])
+            i += 1
+        elif list1[i] > list2[j]:
+            res.append(list2[j])
             j += 1
         else:
-            result.append(arr1[i])
+            res.append(list1[i])
+            res.append(list2[j])
             i += 1
+            j += 1
 
-    while i < len(arr1):
-        result.append(arr1[i])
+    while i < len(list1):
+        res.append(list1[i])
         i += 1
-    while j < len(arr2):
-        result.append(arr2[j])
+    while j < len(list2):
+        res.append(list2[j])
         j += 1
-    return result
+    return res
 
 if __name__ == "__main__":
-    print(sort([1, 3, 5, 10, 21], [1, 4, 9, 12]))
+    print(merge([3, 7, 9, 12], [2, 5, 7, 10]))
